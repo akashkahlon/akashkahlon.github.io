@@ -1,31 +1,63 @@
-# Site settings
-title: CodeIgnition
-email: akashs@codeignition.com
-url: https://akashkahlon.github.io
-description: "Akashdeep Singh Kahlon"
+# Site wide configuration
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary-dark: '#000000'
-  links: '#219ab3'
+title:            My Blog
+locale:           en_US
+url:              
 
-# Footer settings
-footer: Your Website
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
-social:
-  - title: twitter
-    url: https://twitter.com/SBootstrap
-  - title: facebook
-    url: https://facebook.com/akash.kahlon.5
-  - title: stack-overflow
-    url: http://stackoverflow.com/questions/tagged/jekyll
-  - title: bitbucket
-    url: http://bitbucket.org/jekyll
-  - title: github
-    url: https://github.com/akashkahlon
+# Jekyll configuration
+
+permalink:   /:categories/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+
+# Site owner
+owner:
+  name: Akashdeep Singh
+  avatar: 10255400_760794900635738_782769053700834275_o.jpg
+  bio: "Consultant at CodeIgnition software solutuins"
+  email: akashkahlon11@gmail.com
+  disqus-shortname: 
+  twitter: AkashKahlon2
+  facebook: akash.kahlon.5
+  google:
+    plus: #usernemr 
+    analytics: 
+    verify: 
+    ad-client: 
+    ad-slot: 
+  bing-verify: 
+  github: akashkahlon
+  stackoverflow: #http://stackoverflow.com/users/123456/username
+  linkedin: #username
+  xing: #username
+  instagram: #username
+  lastfm: #username
+  tumblr: #username
+  pinterest: #username
+  foursquare: #username
+  steam: #username
+  dribbble: #username
+  youtube: #username
+  soundcloud: #username
+  weibo: #username
+  flickr: #username
+
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
 
 port: 8080
-# Build settings
-markdown: kramdown
-permalink: pretty

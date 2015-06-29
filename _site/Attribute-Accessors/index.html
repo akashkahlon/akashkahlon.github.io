@@ -191,7 +191,8 @@ end
 
 <p>when called, this will give the value of instance_variable.But with just <code>attr_reader</code>, we can not set the value for this instance_variable.</p>
 
-<p>Blog.new.instance_variable = some_value #this will give an error</p>
+<pre><code class="language-Ruby">  Blog.new.instance_variable = some_value #this will give an error
+</code></pre>
 
 <p>For setting the values, we can use another attribute accessor function, <code>attr_writer</code>.</p>
 
@@ -200,7 +201,8 @@ end
 
 <p>Now the call for setting the value of instance_variable will not give an error.</p>
 
-<p>Class.new.instance_variable = some_value  #this will set the value for instance_variable as some_value.</p>
+<pre><code class="language-Ruby">  Class.new.instance_variable = some_value  #this will set the value for instance_variable as some_value.
+</code></pre>
 
 <p>For doing both these things, i.e. the read and write access, by just one function, we use the <code>attr_accessor</code> function.</p>
 
@@ -209,8 +211,9 @@ end
 
 <p>Now, we can get and set the value of this variable, outside its function without defining the <code>setter</code> and <code>getter</code> methods.</p>
 
-<p>Blog.new.instance_variable #this will give the value of the variable
-Blog.new.instance_variable = some_value #this will set the value of the instance variable as some_value.</p>
+<pre><code class="language-Ruby">Blog.new.instance_variable #this will give the value of the variable
+Blog.new.instance_variable = some_value #this will set the value of the instance variable as some_value.
+</code></pre>
 
 <p>So we see that how easy it gets by using just one function, after all Ruby is all about making things easy.</p>
 

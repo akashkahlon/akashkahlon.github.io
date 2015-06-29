@@ -52,7 +52,8 @@ end
   Now the call for setting the value of instance_variable will not give an error.
 
 ~~~ Ruby
-  Class.new.instance_variable = some_value  #this will set the value for instance_variable as some_value.
+  Class.new.instance_variable = some_value  #this will set the value for 
+  instance_variable as some_value.
 ~~~
 
   For doing both these things, i.e. the read and write access, by just one function, we use the `attr_accessor` function.
@@ -65,7 +66,8 @@ end
 
 ~~~ Ruby
 Blog.new.instance_variable #this will give the value of the variable
-Blog.new.instance_variable = some_value #this will set the value of the instance variable as some_value.
+Blog.new.instance_variable = some_value #this will set the value of the instance
+ variable as some_value.
 ~~~
 
   So we see that how easy it gets by using just one function, after all Ruby is all about making things easy.

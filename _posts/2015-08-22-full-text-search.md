@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Attribute Accessors"
-description: "Using Attribute Accessors"
+title: "Full-Text Search in SQL"
+description: "How full-text seacrh works and what makes it efficient"
 tags: ['Ruby']
 author: Akashdeep Singh
 ---

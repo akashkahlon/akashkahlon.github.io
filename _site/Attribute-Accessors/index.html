@@ -201,7 +201,8 @@ end
 
 <p>Now the call for setting the value of instance_variable will not give an error.</p>
 
-<pre><code class="language-Ruby">  Class.new.instance_variable = some_value  #this will set the value for instance_variable as some_value.
+<pre><code class="language-Ruby">  Class.new.instance_variable = some_value  #this will set the value for 
+  instance_variable as some_value.
 </code></pre>
 
 <p>For doing both these things, i.e. the read and write access, by just one function, we use the <code>attr_accessor</code> function.</p>
@@ -212,7 +213,8 @@ end
 <p>Now, we can get and set the value of this variable, outside its function without defining the <code>setter</code> and <code>getter</code> methods.</p>
 
 <pre><code class="language-Ruby">Blog.new.instance_variable #this will give the value of the variable
-Blog.new.instance_variable = some_value #this will set the value of the instance variable as some_value.
+Blog.new.instance_variable = some_value #this will set the value of the instance
+ variable as some_value.
 </code></pre>
 
 <p>So we see that how easy it gets by using just one function, after all Ruby is all about making things easy.</p>
@@ -246,11 +248,11 @@ Blog.new.instance_variable = some_value #this will set the value of the instance
   <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
     <ul>
     
+      <li><a href="/full-text-search/" title="Full-Text Search in SQL">Full-Text Search in SQL</a></li>
+    
       <li><a href="/author-override/" title="Author Override">Author Override</a></li>
     
       <li><a href="/code-highlighting-post/" title="Syntax Highlighting Post">Syntax Highlighting Post</a></li>
-    
-      <li><a href="/sample-link-post/" title="Sample Link Post">Sample Link Post</a></li>
     
     </ul>
     <hr />

@@ -1,0 +1,298 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Full-Text Search in SQL &#8211; My Blog</title>
+<meta name="description" content="Full-text search means to take a sub-string and match it against a given database to find data with similar sub-strings. SQL has queries like “LIKE” which can be used to search something in the data, but when database grows in size the ‘LIKE’ query takes time to process the results.
+To counter these limitations MYSQL introduced a new concept FULLTEXT
+search. It processes the columns initially to create indexes, and then
+the search queries return results a lot faster than the ‘LIKE’ query.
+There are two main parts in the Full-Text search, Indexing and
+Searching.
+Indexing is performed on every table of data to generate indexes, upon
+which the future search queries are performed. After the creation of indexes, full-text search performs queries on these indexes instead of the original data tables.
+Indexing is performed in this manner:
+lets say we have a table with some documnets such d1,d2 and so on.
+
+">
+<meta name="keywords" content="Ruby">
+
+  
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Full-Text Search in SQL">
+<meta name="twitter:description" content="Full-text search means to take a sub-string and match it against a given database to find data with similar sub-strings. SQL has queries like “LIKE” which can be used to search something in the data, but when database grows in size the ‘LIKE’ query takes time to process the results.
+To counter these limitations MYSQL introduced a new concept FULLTEXT
+search. It processes the columns initially to create indexes, and then
+the search queries return results a lot faster than the ‘LIKE’ query.
+There are two main parts in the Full-Text search, Indexing and
+Searching.
+Indexing is performed on every table of data to generate indexes, upon
+which the future search queries are performed. After the creation of indexes, full-text search performs queries on these indexes instead of the original data tables.
+Indexing is performed in this manner:
+lets say we have a table with some documnets such d1,d2 and so on.
+
+">
+<meta name="twitter:site" content="@AkashKahlon2">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/default-thumb.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Full-Text Search in SQL">
+<meta property="og:description" content="Full-text search means to take a sub-string and match it against a given database to find data with similar sub-strings. SQL has queries like “LIKE” which can be used to search something in the data, but when database grows in size the ‘LIKE’ query takes time to process the results.
+To counter these limitations MYSQL introduced a new concept FULLTEXT
+search. It processes the columns initially to create indexes, and then
+the search queries return results a lot faster than the ‘LIKE’ query.
+There are two main parts in the Full-Text search, Indexing and
+Searching.
+Indexing is performed on every table of data to generate indexes, upon
+which the future search queries are performed. After the creation of indexes, full-text search performs queries on these indexes instead of the original data tables.
+Indexing is performed in this manner:
+lets say we have a table with some documnets such d1,d2 and so on.
+
+">
+<meta property="og:url" content="/full-text-search/">
+<meta property="og:site_name" content="My Blog">
+
+<meta property="og:image" content="/images/default-thumb.png">
+
+
+
+
+
+
+<link rel="canonical" href="/full-text-search/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="My Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="/">My Blog</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="/about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="/posts/" >Sample Posts</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="/theme-setup/" >Theme Setup</a></li>
+				
+				    
+				        
+				        
+				    <li><a href="http://mademistakes.com" target="_blank">Made Mistakes</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="/images/" class="bio-photo" alt=" bio photo">
+
+
+  <h3 itemprop="name"></h3>
+  <p></p>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="/full-text-search/" rel="bookmark" title="Full-Text Search in SQL">Full-Text Search in SQL</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>Full-text search means to take a sub-string and match it against a given database to find data with similar sub-strings. SQL has queries like “LIKE” which can be used to search something in the data, but when database grows in size the ‘LIKE’ query takes time to process the results.
+To counter these limitations MYSQL introduced a new concept FULLTEXT
+search. It processes the columns initially to create indexes, and then
+the search queries return results a lot faster than the ‘LIKE’ query.
+There are two main parts in the Full-Text search, Indexing and
+Searching.
+Indexing is performed on every table of data to generate indexes, upon
+which the future search queries are performed. After the creation of indexes, full-text search performs queries on these indexes instead of the original data tables.
+Indexing is performed in this manner:
+lets say we have a table with some documnets such d1,d2 and so on.</p>
+
+<pre><code class="language-Ruby">Document sets = {d1, d2, d3, d4, ... dn}
+Word sets = {w1, w2, w3, .. wn}
+
+=&gt;
+
+w1 -&gt; {d1, d5, d9,.. dn}
+w2 -&gt; {d11, d50, d2,.. dn}
+w3 -&gt; {d23, d67, d34,.. dn}
+:
+wn -&gt; {d90, d87, d57,.. dn}
+
+</code></pre>
+
+<p>The word set contains all the terms or words in the table, the matrix
+generated contains the data in the form of hashes, with each word as the key and as its value it contains all the documents in which it is present.</p>
+
+<p>Now the search query will be performed in this way:</p>
+
+<pre><code class="language-Ruby">SELECT *
+FROM   table
+WHERE  MATCH (column) against ('w2');
+
+</code></pre>
+
+<p>So this search query will check with the indexes and return all the
+documents associated with the word ‘w2’, here it will return:</p>
+
+<pre><code class="language-Ruby">documents = d11, d50, d2,.. dn
+
+</code></pre>
+
+<p>Full-Text search queries are also very flexible and operations like
+‘AND’ ‘OR’ can be easily performed in comparison with “LIKE” queries.
+This makes the use of full-text even more productive.</p>
+
+<p>Considering the above example again, if we want all the documents
+containing words ‘w2’ &amp; ‘w5’, it will perform an ‘AND’ operation
+between the two hashes and generate the resulting documents which appear in both of the hashes.</p>
+
+<p>This is what makes the full-text search real fast.</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/full-text-search/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/full-text-search/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/full-text-search/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Full-Text Search in SQL</strong> was published on <time datetime="2015-08-22T00:00:00+05:30">August 22, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="/Attribute-Accessors/" title="Attribute Accessors">Attribute Accessors</a></li>
+    
+      <li><a href="/author-override/" title="Author Override">Author Override</a></li>
+    
+      <li><a href="/code-highlighting-post/" title="Syntax Highlighting Post">Syntax Highlighting Post</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  
+  <footer>
+    
+
+<span>&copy; 2015 Akashdeep Singh. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+	        
+
+</body>
+</html>
